@@ -1,13 +1,13 @@
-#Это Игра в 21, где нужно набрать 21 или больше дилера, но не более 21, чтобы выиграть ставку
+# Это Игра в 21, где нужно набрать 21 или больше дилера, но не более 21, чтобы выиграть ставку
 import game
 import sys
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
 
 def initiation():
     chips = game.Chips()
     chips.pay_money()
     return chips
+
 
 def start_game(chips):
     desk = game.Desk()
@@ -19,9 +19,10 @@ def start_game(chips):
     dealer_hand.take_one_card(desk)
     hand.take_one_card(desk)
     dealer_hand.take_one_card(desk)
-    print('Рука дилера: \n',dealer_hand.hand[1],'\t')
-    print('Ваша рука: \n',hand)
+    print('Рука дилера: \n', dealer_hand.hand[1], '\t')
+    print('Ваша рука: \n', hand)
     return desk, hand, chips, dealer_hand
+
 
 def one_more_game(chips):
     while True:
@@ -34,7 +35,7 @@ def one_more_game(chips):
             return True
         elif answer == 'Н':
             print('Всего доброго!')
-            return  False
+            return False
         else:
             print('Непонятный ответ!')
             continue
@@ -62,7 +63,7 @@ def take_or_stop(hand, desk):
             hand.take_one_card(desk)
             print(hand)
             hand.add_aces()
-            if hand.value >21:
+            if hand.value > 21:
                 print('Вы проиграли, у вас перебор!')
                 return hand, desk
             continue
@@ -73,22 +74,25 @@ def take_or_stop(hand, desk):
             print('Непонятный ответ!')
             continue
 
-def dealer(hand,dealer_hand,desk):
+
+def dealer(hand, dealer_hand, desk):
     dealer_hand.add_aces()
     while dealer_hand.value < hand.value <= 21:
         dealer_hand.take_one_card(desk)
         dealer_hand.add_aces()
         print(f'Рука Дилера:\n{dealer_hand}\n'
               f'Его очки: {dealer_hand.value}')
-    else: print(f'Карты дилера: {dealer_hand}')
+    else:
+        print(f'Карты дилера: {dealer_hand}')
     return dealer_hand
 
-def end(hand, dealer_hand, chips) :
+
+def end(hand, dealer_hand, chips):
     if hand.value > 21 or hand.value < dealer_hand.value < 21:
         print(f'Вы проиграли {chips.bet}\n'
               f'Теперь у вас {chips.balance} Р')
     elif dealer_hand.value <= hand.value or dealer_hand.value == 99:
-        chips.balance += chips.bet*2
+        chips.balance += chips.bet * 2
         print(f'ПОБЕДА!!!\n'
               f'Теперь у вас {chips.balance} Р')
     else:
@@ -96,6 +100,7 @@ def end(hand, dealer_hand, chips) :
               f'Ваш: {hand.value}\n'
               f'Дилера: {dealer_hand.value}')
     return one_more_game(chips)
+
 
 if __name__ == '__main__':
     print('Добро пожаловать в 21!')
@@ -118,11 +123,3 @@ if __name__ == '__main__':
         hand, desk = take_or_stop(hand, desk)
         dealer_hand = dealer(hand, dealer_hand, desk)
         game.playing = end(hand, dealer_hand, chips)
-
-
-
-
-
-
-
-

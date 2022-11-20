@@ -1,6 +1,5 @@
 import random
 
-
 suits = ('Черви', 'Бубы', 'Крести', 'Пики')
 names = ('Двойка', 'Тройка', 'Четвёрка', 'Пятёрка', 'Шестёрка', 'Семёрка', 'Восьмёрка', 'Девятка', 'Десятка', 'Валет',
          'Дама', 'Король', 'Туз')
@@ -8,6 +7,7 @@ values = {'Двойка': 2, 'Тройка': 3, 'Четвёрка': 4, 'Пятё
           'Девятка': 9, 'Десятка': 10, 'Валет': 10, 'Дама': 10, 'Король': 10, 'Туз': 11}
 
 playing = True
+
 
 class Card():
 
@@ -17,6 +17,7 @@ class Card():
 
     def __str__(self):
         return f"{self.name} {self.suit}"
+
 
 class Desk():
 
@@ -40,6 +41,7 @@ class Desk():
     def give_card(self):
         card = self.deck.pop()
         return card
+
 
 class Hand():
 
@@ -73,6 +75,8 @@ class Hand():
             self.value -= 10
         if self.value > 21:
             self.value = 99
+
+
 class Chips():
 
     def __init__(self, balance=1000, bet=0):
@@ -115,7 +119,6 @@ class Chips():
                 print('Ставка сделана!')
                 print(self)
                 break
-
 
 
 if __name__ == "__main__":
