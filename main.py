@@ -52,7 +52,7 @@ def take_or_stop(hand, desk):
         elif hand.value > 21:
             hand.add_aces()
             if hand.value > 21:
-                print('Обосрамс')
+                print('Вы проиграли, у вас перебор!')
                 return hand, desk
             continue
         elif hand.value == 21:
@@ -63,7 +63,7 @@ def take_or_stop(hand, desk):
             print(hand)
             hand.add_aces()
             if hand.value >21:
-                print('Обосрамс')
+                print('Вы проиграли, у вас перебор!')
                 return hand, desk
             continue
         elif answer == 'Н':
