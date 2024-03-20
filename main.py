@@ -1,9 +1,11 @@
 # Это Игра в 21, где нужно набрать 21 или больше дилера, но не более 21, чтобы выиграть ставку
 import game
 import sys
-
+import logging_hw
+from logging_hw import logger_1
 
 def initiation():
+    logger_1.warning("Only_for_me: Game ini")
     chips = game.Chips()
     chips.pay_money()
     return chips
@@ -32,8 +34,12 @@ def one_more_game(chips):
         answer = input('Хотите сыграть ещё?\n'
                        ' Д/Н:\t')
         if answer == 'Д':
+            logger_1.warning("Only_for_me: NEW GAME STARTED")
             return True
         elif answer == 'Н':
+            logger_1.warning("Only_for_me: GAME ENDED"
+                             "         "
+                             "         ")
             print('Всего доброго!')
             return False
         else:
@@ -43,6 +49,7 @@ def one_more_game(chips):
 
 def take_or_stop(hand, desk):
     while True:
+        logger_1.info("Only_for_me: WE ARE IN TAKE OR STOP CYCLE")
         hand.add_aces()
         answer = input(f'Вы хотите взять ещё?\n'
                        f'В данный момент сумма {hand.value}\n'
@@ -73,9 +80,11 @@ def take_or_stop(hand, desk):
         else:
             print('Непонятный ответ!')
             continue
+    logger_1.info("Only_for_me:TAKE OR STOP CYCLE ended")
 
 
 def dealer(hand, dealer_hand, desk):
+    logger_1.info("DEALER FUNC IS STARTED")
     dealer_hand.add_aces()
     while dealer_hand.value < hand.value <= 21:
         dealer_hand.take_one_card(desk)
@@ -84,18 +93,23 @@ def dealer(hand, dealer_hand, desk):
               f'Его очки: {dealer_hand.value}')
     else:
         print(f'Карты дилера: {dealer_hand}')
+    logger_1.info("DEALER FUNC IS ENDED")
     return dealer_hand
 
 
 def end(hand, dealer_hand, chips):
-    if hand.value > 21 or hand.value < dealer_hand.value < 21:
+    logger_1.warning("FINAL OF THIS ROUND")
+    if hand.value > 21 or hand.value < dealer_hand.value <= 21:
         print(f'Вы проиграли {chips.bet}\n'
               f'Теперь у вас {chips.balance} Р')
+        logger_1.warning("USER LOSE")
     elif dealer_hand.value <= hand.value or dealer_hand.value == 99:
         chips.balance += chips.bet * 2
         print(f'ПОБЕДА!!!\n'
               f'Теперь у вас {chips.balance} Р')
+        logger_1.warning("USER WIN")
     else:
+        logger_1.error("Smth strange happend")
         print(f'Что вообще случилось?\n'
               f'Ваш: {hand.value}\n'
               f'Дилера: {dealer_hand.value}')
