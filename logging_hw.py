@@ -5,6 +5,41 @@ import config_dict
 dictConfig(config_dict.LOGGING)
 logger_1 = logging.getLogger('my_logging_hw')
 
+"""
+BASIC CONFIG IF WE DON'T WANT TO USE DICT_CONFIG:
+
+logging.basicConfig(
+    level=logging.INFO,
+    filename='logs.log',
+    format='%(asctime)s - %(levelname)s - %(module)s: line %(lineno)d - %(message)s'
+)
+
+main_formatter = logging.Formatter(
+    "%(asctime)s => %(message)s"
+)
+
+logger_1 = logging.getLogger("my_logging_hw")
+
+console = logging.StreamHandler()
+console.setLevel(logging.WARNING)
+console.setFormatter(main_formatter)
+console.addFilter(config_dict.MyFilter())
+
+log_file = logging.FileHandler(filename="logs.log", mode="w")
+log_file.setLevel(logging.DEBUG)
+log_file.addFilter(config_dict.LevelFilter())
+
+txt_file = config_dict.txtHandler()
+txt_file.setLevel(logging.DEBUG)
+txt_file.addFilter(config_dict.MyFilter())
+txt_file.addFilter(config_dict.FuncNameFilter())
+
+
+logger_1.addHandler(console)
+logger_1.addHandler(log_file)
+logger_1.addHandler(txt_file)
+"""
+
 
 def main():
     logger_1.debug("A DEBUG Message")

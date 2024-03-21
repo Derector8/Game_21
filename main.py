@@ -6,13 +6,14 @@ from logging_hw import logger_1
 
 
 def initiation():
-    logger_1.warning("Only_for_me: Game ini")
+    logger_1.warning("Only_for_me: Game init")
     chips = game.Chips()
     chips.pay_money()
     return chips
 
 
 def start_game(chips):
+    logger_1.warning("Only_for_me: GAME STARTED")
     desk = game.Desk()
     desk.shuffle()
     dealer_hand = game.Hand()
@@ -28,6 +29,7 @@ def start_game(chips):
 
 
 def one_more_game(chips):
+    logger_1.warning("Only_for_me: ASKED FOR ONE MORE GAME")
     while True:
         if chips.balance == 0:
             print('У вас закончились деньги, всего доброго!')
@@ -38,9 +40,7 @@ def one_more_game(chips):
             logger_1.warning("Only_for_me: NEW GAME STARTED")
             return True
         elif answer == 'Н':
-            logger_1.warning("Only_for_me: GAME ENDED"
-                             "         "
-                             "         ")
+            logger_1.warning("Only_for_me: GAME ENDED\n\n")
             print('Всего доброго!')
             return False
         else:
@@ -118,16 +118,20 @@ def end(hand, dealer_hand, chips):
 
 
 if __name__ == '__main__':
+    logger_1.warning("THE GAME STARTED")
     print('Добро пожаловать в 21!')
     while True:
         answer = input('Вы желаете сыграть в игру? Д/Н: ')
         if answer == 'Д':
+            logger_1.warning("USER AGREED TO PLAY")
             print('Отлично, теперь пополните ваш баланс!')
             break
         elif answer == 'Н':
+            logger_1.warning("USER REJECTED TO PLAY")
             print('Очень жаль, всего доброго!')
             sys.exit()
         else:
+            logger_1.warning("USER PRINT SMTH STRANGE")
             print('Непонятный ответ!')
             continue
 
