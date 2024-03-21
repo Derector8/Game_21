@@ -3,10 +3,6 @@ import logging_hw
 from logging_hw import logger_1
 
 
-#dictConfig(config_dict.LOGGING)
-#logger_1 = logging.getLogger('my_logging_hw')
-
-
 suits = ('Черви', 'Бубы', 'Крести', 'Пики')
 names = ('Двойка', 'Тройка', 'Четвёрка', 'Пятёрка', 'Шестёрка', 'Семёрка', 'Восьмёрка', 'Девятка', 'Десятка', 'Валет',
          'Дама', 'Король', 'Туз')

@@ -4,6 +4,7 @@ import sys
 import logging_hw
 from logging_hw import logger_1
 
+
 def initiation():
     logger_1.warning("Only_for_me: Game ini")
     chips = game.Chips()
@@ -132,7 +133,7 @@ if __name__ == '__main__':
 
     chips = initiation()
 
-    while game.playing == True:
+    while game.playing:
         desk, hand, chips, dealer_hand = start_game(chips)
         hand, desk = take_or_stop(hand, desk)
         dealer_hand = dealer(hand, dealer_hand, desk)
